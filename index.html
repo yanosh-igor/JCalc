@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Calculator</title>
+<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/themes/cupertino/jquery-ui.css" rel="stylesheet" />
+<link href="css/demo.css" rel="stylesheet" />
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js" type="text/javascript"></script>
+<script src="js/calculator.js" type="text/javascript"></script>
+<script type="text/javascript">
+	$(function(){
+		$.fn.calculator.hide = function(calc) {
+			calc.fadeOut(500);
+		};
+		
+		$('#calc').calculator({movable:true,resizable:true, width:250,height:300,defaultOpen:false});
+		$('#showCalc').click(function(){
+			$('#calc').toggle(1000);
+			
+			//$('#calc').show();
+		})
+	})
+</script>
+<script>
+
+$(document).ready(function() {	
+
+	
+	$('button[name=modal]').click(function(e) {
+		
+		e.preventDefault();
+		
+		
+		var id = $(this).attr('href');
+	
+		
+		var maskHeight = $(document).height();
+		var maskWidth = $(window).width();
+	
+		
+		$('#mask').css({'width':maskWidth,'height':maskHeight});
+		
+		
+		$('#mask').fadeIn(1000);	
+		$('#mask').fadeTo("slow",0.8);	
+	
+		
+		var winH = $(window).height();
+		var winW = $(window).width();
+              
+		
+		$(id).css('top',  winH/2-$(id).height()/2);
+		$(id).css('left', winW/2-$(id).width()/2);
+	
+		
+		$(id).fadeIn(2000); 
+	
+	});
+	
+	
+	$('.window .close').click(function (e) {
+		
+		e.preventDefault();
+		
+		$('#mask').hide();
+		$('.window').hide();
+	});		
+	
+	
+	$('#mask').click(function () {
+		$(this).hide();
+		$('.window').hide();
+	});			
+	
+});
+
+</script>
+
+</head>
+
+<body>
+	
+	 <div class="buttons"> 
+  		<button id="left"></button> 
+   		<button href="#dialog2" id="info" name="modal"></button>
+   		<button id="right"></button>
+ 	</div>
+ 
+	<div id="boxes">
+
+
+
+			<div id="dialog2" class="window">
+  				Specially for <b>Kozak</b>, Yanosh Igor has created this simple 					calculator. He hopes for the <b>high</b> score : ) <br/><br/>
+			<input type="button" value="Close it" class="close"/>
+			</div>
+
+
+  			<div id="mask"></div>
+	</div>
+
+	<img  class="block" src="img/logo.png">
+	
+	<a id="showCalc" class="stylish" href="javascript:void(0)">Calculator</a>
+	
+	<div id="calc"></div>
+	
+	
+	
+	<script>
+		$("#right").click(function(){
+  		$(".block").animate({"margin-left": "+=50px"}, "slow");
+		});
+
+		$("#left").click(function(){
+ 		$(".block").animate({"margin-left": "-=50px"}, "slow");
+			});
+
+	</script>
+
+</body>
+</html>
